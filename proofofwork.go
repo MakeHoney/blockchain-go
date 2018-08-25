@@ -12,13 +12,15 @@ var (
 	maxNonce = math.MaxInt64
 )
 
-const targetBits = 24
+// 난이도를 조절하는 targetBits는 임시로 상수로 설정
+const targetBits = 15
 
 type ProofOfWork struct {
 	block  *Block
 	target *big.Int
 }
 
+// ProofOfWork의 constructor
 func NewProofOfWork(b *Block) *ProofOfWork {
 	target := big.NewInt(1)
 	target.Lsh(target, uint(256-targetBits))
@@ -53,7 +55,9 @@ func (pow *ProofOfWork) Run() (int, []byte) {
 		hash = sha256.Sum256(data)
 		fmt.Printf("\r%x", hash)
 
+		// take big.Int from a slice of []byte
 		hashInt.SetBytes(hash[:])
+		// hashInt < pow.target이면 break
 		if hashInt.Cmp(pow.target) == -1 {
 			break
 		} else {
