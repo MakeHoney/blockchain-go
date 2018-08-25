@@ -15,5 +15,6 @@ func IntToHex(num int64) []byte {
 	}
 
 	// buff에 쓰인 binary 데이터를 byte형식(16진수 형식)으로 리턴
+	// .Bytes() => returns type []byte
 	return buff.Bytes()
 }
