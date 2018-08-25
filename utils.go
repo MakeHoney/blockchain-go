@@ -6,6 +6,7 @@ import (
 	"log"
 )
 
+// IntToHex converts an int64 to a byte array
 func IntToHex(num int64) []byte {
 	buff := new(bytes.Buffer)
 	// num을 big endian 순서로 buff에 binary 형식으로 쓴다.
